@@ -4,6 +4,11 @@ return {
     lazy = false, -- Imposta a false per caricarlo all'avvio
     priority = 1000, -- Assicura che si carichi prima di altri plugin
     config = function()
+        local theme = "wave" -- Scegli tra 'wave', 'dragon', 'thoth'
+        
+        -- Stampa il flavour corrente
+        
+        
         require('kanagawa').setup({
             transparent = true, -- Rendi lo sfondo trasparente
             compile = false,    -- Compila il tema per prestazioni migliori (potresti volerlo impostare su true dopo averlo testato)
@@ -15,7 +20,7 @@ return {
                     PmenuSel = { bg = colors.theme.ui.bg_search },
                 }
             end,
-            theme = "wave", -- Scegli tra 'wave', 'dragon', 'thoth'
+            theme = theme,
         })
     end
 }

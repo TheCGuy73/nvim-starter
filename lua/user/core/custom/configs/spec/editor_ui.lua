@@ -16,7 +16,7 @@ vim.opt.laststatus = 2
 
 
 -- Colori truecolor
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 
 
 
@@ -26,5 +26,9 @@ vim.opt.showcmd = true
 -- Visualizza la modalità corrente
 vim.opt.showmode = true
 
--- Select theme
-vim.cmd.colorscheme("ef-dream")
+-- Abilita il file browser
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Select theme (temporarily disabled)
+vim.cmd.colorscheme("catppuccin")
