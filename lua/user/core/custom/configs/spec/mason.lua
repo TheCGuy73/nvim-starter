@@ -136,7 +136,8 @@ vim.api.nvim_create_user_command('MasonInstallAll', function()
     'html',
     'cssls',
     'jsonls',
-    'jdtls'
+    'jdtls',
+    'nimls'
   }, ' '))
 end, {})
 
@@ -149,7 +150,8 @@ vim.api.nvim_create_user_command('MasonUninstallAll', function()
     'html',
     'cssls',
     'jsonls',
-    'jdtls'
+    'jdtls',
+    'nimls'
   }, ' '))
 end, {})
 
@@ -367,6 +369,36 @@ vim.api.nvim_create_user_command('MasonSetupServer', function(args)
           },
           checkOnSave = {
             command = "clippy",
+          },
+        },
+      },
+    },
+    nimls = {
+      settings = {
+        nim = {
+          -- Abilita l'analisi semantica
+          enableSemanticTokens = true,
+          -- Abilita l'auto-completamento
+          enableAutoCompletion = true,
+          -- Abilita la diagnostica in tempo reale
+          enableDiagnostics = true,
+          -- Configurazione per il completamento
+          completion = {
+            enable = true,
+            snippets = true,
+          },
+          -- Configurazione per la diagnostica
+          diagnostics = {
+            enable = true,
+            exclude = {},
+          },
+          -- Configurazione per il formattatore
+          formatting = {
+            enable = true,
+          },
+          -- Configurazione per il linter
+          linting = {
+            enable = true,
           },
         },
       },

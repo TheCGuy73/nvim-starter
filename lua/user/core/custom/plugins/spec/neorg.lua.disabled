@@ -1,0 +1,88 @@
+return {
+    "nvim-neorg/neorg",
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        -- Rimossi moduli problematici per compatibilità Windows
+    },
+    config = function()
+        -- Configurazione per evitare problemi su Windows
+        vim.g.neorg_use_legacy_parser = true
+        
+        require('neorg').setup({
+            load = {
+                ["core.defaults"] = {}, -- Loads default behaviour
+                -- ["core.norg.concealer"] = {}, -- Disabilitato per compatibilità Windows
+                ["core.norg.dirman"] = { -- Manages Neorg workspaces
+                    config = {
+                        workspaces = {
+                            notes = "~/notes",
+                            work = "~/work/notes",
+                            personal = "~/personal/notes",
+                        },
+                        default_workspace = "notes",
+                        index = "index.norg", -- The name of the main (root) .norg file
+                        last_workspace = vim.fn.stdpath("data") .. "/neorg_last_workspace.txt",
+                    },
+                },
+                -- Rimossi moduli problematici per compatibilità
+                -- ["core.norg.completion"] = {
+                --     config = {
+                --         engine = "nvim-cmp",
+                --     },
+                -- },
+                -- ["core.norg.journal"] = {
+                --     config = {
+                --         workspace = "notes",
+                --         strategy = "flat",
+                --     },
+                -- },
+                -- ["core.norg.qol.toc"] = {
+                --     config = {
+                --         close_after_use = true,
+                --     },
+                -- },
+                -- ["core.norg.manoeuvre"] = {}, -- Easy hopping between Neorg files
+                -- ["core.norg.treesitter"] = {
+                --     config = {
+                --         parser_configs = {
+                --             ["norg"] = {
+                --                 install_info = {
+                --                     url = "https://github.com/nvim-neorg/tree-sitter-norg",
+                --                     files = { "src/parser.c", "src/scanner.cc" },
+                --                     branch = "main",
+                --                 },
+                --             },
+                --             ["norg_meta"] = {
+                --                 install_info = {
+                --                     url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+                --                     files = { "src/parser.c" },
+                --                     branch = "main",
+                --                 },
+                --             },
+                --         },
+                --     },
+                -- },
+                -- ["core.integrations.telescope"] = {}, -- Telescope integration
+                -- Disabilitato export per evitare problemi con DLL su Windows
+                -- ["core.export"] = {},
+                -- ["core.export.markdown"] = {
+                --     config = {
+                --         extensions = "all",
+                --     },
+                -- },
+            },
+        })
+
+        -- Keymaps per Neorg (solo funzionalità base)
+        vim.keymap.set("n", "<leader>ni", "<cmd>Neorg index<CR>", { desc = "Neorg Index" })
+        vim.keymap.set("n", "<leader>nw", "<cmd>Neorg workspace notes<CR>", { desc = "Neorg Workspace Notes" })
+        vim.keymap.set("n", "<leader>nW", "<cmd>Neorg workspace work<CR>", { desc = "Neorg Workspace Work" })
+        vim.keymap.set("n", "<leader>np", "<cmd>Neorg workspace personal<CR>", { desc = "Neorg Workspace Personal" })
+        
+        -- Notifica che alcuni moduli sono disabilitati
+        vim.notify("Neorg caricato con configurazione ultra-minima per compatibilità Windows", vim.log.levels.INFO)
+    end,
+}

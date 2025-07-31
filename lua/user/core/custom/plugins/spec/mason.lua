@@ -28,6 +28,8 @@ return {
           'cssls',       -- CSS
           'jsonls',      -- JSON
           'jdtls',       -- Java (Eclipse JDT Language Server)
+          'zls',         -- Zig Language Server
+          'nimls',       -- Nim Language Server
         },
         -- Configurazione automatica dei server LSP
         automatic_installation = true,
@@ -209,6 +211,70 @@ return {
                   },
                   checkOnSave = {
                     command = "clippy",
+                  },
+                },
+              },
+            })
+          end,
+          
+          ['zls'] = function()
+            require('lspconfig').zls.setup({
+              settings = {
+                zls = {
+                  -- Abilita l'analisi semantica
+                  enable_semantic_tokens = true,
+                  -- Abilita l'auto-completamento
+                  enable_autofix = true,
+                  -- Abilita la diagnostica in tempo reale
+                  enable_inlay_hints = true,
+                  -- Configurazione per l'inlay hints
+                  inlay_hints = {
+                    show_parameter_name = true,
+                    show_variable_type = true,
+                    show_function_return_type = true,
+                  },
+                  -- Configurazione per la diagnostica
+                  diagnostics = {
+                    enable = true,
+                    exclude = {},
+                  },
+                  -- Configurazione per il completamento
+                  completions = {
+                    enable = true,
+                    snippets = true,
+                  },
+                },
+              },
+            })
+          end,
+          
+          ['nimls'] = function()
+            require('lspconfig').nimls.setup({
+              settings = {
+                nim = {
+                  -- Abilita l'analisi semantica
+                  enableSemanticTokens = true,
+                  -- Abilita l'auto-completamento
+                  enableAutoCompletion = true,
+                  -- Abilita la diagnostica in tempo reale
+                  enableDiagnostics = true,
+                  -- Configurazione per il completamento
+                  completion = {
+                    enable = true,
+                    snippets = true,
+                  },
+                  -- Configurazione per la diagnostica
+                  diagnostics = {
+                    enable = true,
+                    exclude = {},
+                  },
+                  -- Configurazione per il formattatore
+                  formatting = {
+                    enable = true,
+                  },
+                  -- Configurazione per il linter
+                  linting = {
+                    enable = true,
                   },
                 },
               },

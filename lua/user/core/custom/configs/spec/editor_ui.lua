@@ -26,9 +26,7 @@ vim.opt.showcmd = true
 -- Visualizza la modalità corrente
 vim.opt.showmode = true
 
--- Abilita il file browser
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- Configurazione UI - netrw è già disabilitato in init.lua
 
--- Select theme (temporarily disabled)
-vim.cmd.colorscheme("catppuccin")
+-- Select theme
+vim.cmd.colorscheme("monokai-pro")

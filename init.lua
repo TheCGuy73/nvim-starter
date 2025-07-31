@@ -1,3 +1,4 @@
+
 -- Inizializzazione bootstrap di lazy.nvim
 require('user.core.lazy_bootstrap')
 
@@ -5,4 +6,4 @@ require('user.core.lazy_bootstrap')
 require('user.core.lazy_plugins_init')
 
 -- Inizializzazione delle configurazioni custom
-require('user.core.configs_init') 
+require('user.core.configs_init')

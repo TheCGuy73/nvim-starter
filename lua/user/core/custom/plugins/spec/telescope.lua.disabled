@@ -28,6 +28,9 @@ return {
       -- Carica l'estensione fzf
       telescope.load_extension('fzf')
       
+      -- Estensione neorg rimossa per compatibilità Windows
+      -- telescope.load_extension('neorg')
+      
       -- Keymaps per telescope
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
